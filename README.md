@@ -1,5 +1,5 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/zinclabs/zinc)](https://goreportcard.com/report/github.com/zinclabs/zinc)
-[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/zinc-nvh4832/shared_invite/zt-11r96hv2b-UwxUILuSJ1duzl_6mhJwVg) [![Docs](https://img.shields.io/badge/Docs-Docs-green)](https://docs.zincsearch.com/) [![codecov](https://codecov.io/github/zinclabs/zinc/branch/main/graph/badge.svg)](https://codecov.io/github/zinclabs/zinc)
+[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/zincsearch/shared_invite/zt-11r96hv2b-UwxUILuSJ1duzl_6mhJwVg) [![Docs](https://img.shields.io/badge/Docs-Docs-green)](https://docs.zincsearch.com/) [![codecov](https://codecov.io/github/zinclabs/zinc/branch/main/graph/badge.svg)](https://codecov.io/github/zinclabs/zinc)
 
 # Zinc Search Engine
 
@@ -83,8 +83,8 @@ Check the [contributing guide](./CONTRIBUTING.md) . Also check the [roadmap item
 | Open source         | Yes | Willl soon be available |
 | ES API compatibility| Search and Ingestion | Ingestion only | 
 | GUI                 | Basic     | Advanced for log search |
-| Cost                | Free (self hosting may cost money based on size)| Generous free tier. 1 TB ingest / month free. Pricing to be finalized upon GA.| 
-| Get started         | [Quick start](https://docs.zincsearch.com/quickstart/) | [![Sign up](./screenshots/sign-up.jpg)](https://z9uzdkifovs.typeform.com/zinc-cloud) |
+| Cost                | Free (self hosting may cost money based on size)| Generous free tier. 1 TB ingest / month free.| 
+| Get started         | [Quick start](https://docs.zincsearch.com/quickstart/) | [![Sign up](./screenshots/get-started-for-free.png)](https://cloud.zincsearch.com) |
 
 
 

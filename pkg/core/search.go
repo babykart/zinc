@@ -24,12 +24,12 @@ import (
 	"github.com/blugelabs/bluge/search/highlight"
 	"github.com/rs/zerolog/log"
 
-	zincsearch "github.com/zinclabs/zinc/pkg/bluge/search"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/uquery"
-	"github.com/zinclabs/zinc/pkg/uquery/fields"
-	"github.com/zinclabs/zinc/pkg/uquery/source"
-	"github.com/zinclabs/zinc/pkg/uquery/timerange"
+	zincsearch "github.com/zinclabs/zincsearch/pkg/bluge/search"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/uquery"
+	"github.com/zinclabs/zincsearch/pkg/uquery/fields"
+	"github.com/zinclabs/zincsearch/pkg/uquery/source"
+	"github.com/zinclabs/zincsearch/pkg/uquery/timerange"
 )
 
 func (index *Index) Search(query *meta.ZincQuery) (*meta.SearchResponse, error) {
@@ -139,6 +139,7 @@ func searchV2(shardNum, readerNum int64, dmi search.DocumentMatchIterator, query
 			continue
 		}
 
+		sourceData["@timestamp"] = timestamp
 		hit := meta.Hit{
 			Index:     indexName,
 			Type:      "_doc",

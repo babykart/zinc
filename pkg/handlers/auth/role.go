@@ -19,13 +19,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zinclabs/zinc/pkg/auth"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/auth"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 // @Id CreateRole
 // @Summary Create role
+// @security BasicAuth
 // @Tags    Role
 // @Accept  json
 // @Produce json
@@ -56,6 +57,7 @@ func CreateUpdateRole(c *gin.Context) {
 
 // @Id ListRoles
 // @Summary List role
+// @security BasicAuth
 // @Tags    Role
 // @Produce json
 // @Success 200 {object} []meta.Role
@@ -73,6 +75,7 @@ func ListRole(c *gin.Context) {
 
 // @Id DeleteRole
 // @Summary Delete role
+// @security BasicAuth
 // @Tags    Role
 // @Produce json
 // @Param   id  path  string  true  "Role id"

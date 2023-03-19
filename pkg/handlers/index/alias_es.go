@@ -22,9 +22,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog/log"
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/zutils"
+
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 type Alias struct {
@@ -45,6 +46,7 @@ type base struct {
 
 // @Id AddOrRemoveESAlias
 // @Summary Add or remove index alias for compatible ES
+// @security BasicAuth
 // @Tags    Index
 // @Produce json
 // @Success 200 {object} map[string]interface{}
@@ -104,6 +106,7 @@ func AddOrRemoveESAlias(c *gin.Context) {
 
 // @Id GetESAliases
 // @Summary Get index alias for compatible ES
+// @security BasicAuth
 // @Tags    Index
 // @Produce json
 // @Param   target path  string  false  "Target Index"

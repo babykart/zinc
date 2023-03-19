@@ -1,9 +1,10 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/zinclabs/zinc)](https://goreportcard.com/report/github.com/zinclabs/zinc)
-[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/zincsearch/shared_invite/zt-11r96hv2b-UwxUILuSJ1duzl_6mhJwVg) [![Docs](https://img.shields.io/badge/Docs-Docs-green)](https://docs.zincsearch.com/) [![codecov](https://codecov.io/github/zinclabs/zinc/branch/main/graph/badge.svg)](https://codecov.io/github/zinclabs/zinc)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zinclabs/zincsearch)](https://goreportcard.com/report/github.com/zinclabs/zincsearch)
+[![Docs](https://img.shields.io/badge/Docs-Docs-green)](https://docs.zinc.dev/) [![codecov](https://codecov.io/github/zinclabs/zincsearch/branch/main/graph/badge.svg)](https://codecov.io/github/zinclabs/zincsearch)
 
-# Zinc Search Engine
+❗Note: If your use case is of log search (app and security logs) instead of app search (implement search feature in your application or website) then you should check [zinclabs/zincobserve](https://github.com/zinclabs/zincobserve) project that is specifically built for observability use case.
+# ZincSearch
 
-Zinc is a search engine that does full text indexing. It is a lightweight alternative to Elasticsearch and runs using a fraction of the resources. It uses [bluge](https://github.com/blugelabs/bluge) as the underlying indexing library.
+ZincSearch is a search engine that does full text indexing. It is a lightweight alternative to Elasticsearch and runs using a fraction of the resources. It uses [bluge](https://github.com/blugelabs/bluge) as the underlying indexing library.
 
 It is very simple and easy to operate as opposed to Elasticsearch which requires a couple dozen knobs to understand and tune which you can get up and running in 2 minutes
 
@@ -25,7 +26,7 @@ You could try ZincSearch without installing using below details:
 
 Note: Do not store sensitive data on this server as its available to everyone on internet. Data will also be cleaned on this server regularly.
 
-# Why zinc
+# Why ZincSearch
 
   While Elasticsearch is a very good product, it is complex and requires lots of resources and is more than a decade old. I built Zinc so it becomes easier for folks to use full text search indexing without doing a lot of work.
 
@@ -37,12 +38,12 @@ Note: Do not store sensitive data on this server as its available to everyone on
 4. Compatibility with Elasticsearch APIs for ingestion of data (single record and bulk API)
 5. Out of the box authentication
 6. Schema less - No need to define schema upfront and different documents in the same index can have different fields.
-7. Index storage in disk (default), s3 or minio (experimental)
+7. Index storage in disk (default), s3 or minio (deprecated)
 8. aggregation support
 
 # How to get support
 
-Easiet way to get suppport is to join the [slack channel](https://join.slack.com/t/zincsearch/shared_invite/zt-11r96hv2b-UwxUILuSJ1duzl_6mhJwVg).
+Easiest way to get support is to join the [Slack channel](https://join.slack.com/t/zincsearch/shared_invite/zt-11r96hv2b-UwxUILuSJ1duzl_6mhJwVg).
 
 # Roadmap items:
 
@@ -63,16 +64,12 @@ Please create an issue if you would like something to be added to the roadmap.
 
 ## Quickstart
 
-Check [Quickstart](https://docs.zincsearch.com/quickstart/) 
+Check [Quickstart](https://docs.zinc.dev/quickstart/)
 
 
 # Releases
 
 ZincSearch currently has most of its API contracts frozen. It's data format may still experience changes as we improve things. Currently ZincSearch is in beta. Data format should become highly stable when we move to GA (version 1).
-
-# How to develop and contribute to Zinc
-
-Check the [contributing guide](./CONTRIBUTING.md) . Also check the [roadmap items](https://github.com/orgs/zinclabs/projects/3)
 
 
 # Editions
@@ -84,11 +81,22 @@ Check the [contributing guide](./CONTRIBUTING.md) . Also check the [roadmap item
 | Preferred Use case  | App search | Log / event search |
 | Max  data supported | 100s of GBs | Petabyte scale |
 | High availability   | Will be available soon | Yes |
-| Open source         | Yes | Willl soon be available |
+| Open source         | Yes | Yes, [ZincObserve](https://github.com/zinclabs/zincobserve)  |
 | ES API compatibility| Search and Ingestion | Ingestion only | 
 | GUI                 | Basic     | Advanced for log search |
-| Cost                | Free (self hosting may cost money based on size)| Generous free tier. 1 TB ingest / month free.| 
-| Get started         | [Quick start](https://docs.zincsearch.com/quickstart/) | [![Sign up](./screenshots/get-started-for-free.png)](https://cloud.zincsearch.com) |
+| Cost                | Free (self hosting may cost money based on size)| Generous free tier. 200 GB ingest / month free.| 
+| Get started         | [Quick start](https://docs.zinc.dev/quickstart/) | [![Sign up](./screenshots/get-started-for-free.png)](https://observe.zinc.dev) |
 
+# Community
 
+- How to develop and contribute to Zinc
 
+  Check the [contributing guide](./CONTRIBUTING.md) . Also check the [roadmap items](https://github.com/orgs/zinclabs/projects/3)
+
+- Join our Slack Channel
+
+  [![Slack](./screenshots/slack.png)](https://join.slack.com/t/zinc-nvh4832/shared_invite/zt-11r96hv2b-UwxUILuSJ1duzl_6mhJwVg)
+
+- Join our weChat Group
+
+  <img src="./screenshots/wechat_qr.jpg" width="300">

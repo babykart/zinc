@@ -20,14 +20,15 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/uquery/mappings"
-	"github.com/zinclabs/zinc/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/uquery/mappings"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 // @Id GetMapping
 // @Summary Get index mappings
+// @security BasicAuth
 // @Tags    Index
 // @Produce json
 // @Param   index  path  string  true  "Index"
@@ -50,6 +51,7 @@ func GetMapping(c *gin.Context) {
 
 // @Id SetMapping
 // @Summary Set index mappings
+// @security BasicAuth
 // @Tags    Index
 // @Accept  json
 // @Produce json

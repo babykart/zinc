@@ -19,11 +19,12 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zinclabs/zinc/pkg/auth"
+	"github.com/zinclabs/zincsearch/pkg/auth"
 )
 
 // @Id ListPermissions
 // @Summary List permissions
+// @security BasicAuth
 // @Tags    Permission
 // @Produce json
 // @Success 200 {object} []string

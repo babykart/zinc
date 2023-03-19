@@ -26,18 +26,19 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog/log"
 
-	"github.com/zinclabs/zinc/pkg/config"
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/ider"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/zutils"
-	"github.com/zinclabs/zinc/pkg/zutils/json"
+	"github.com/zinclabs/zincsearch/pkg/config"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/ider"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/zutils/json"
 )
 
 // Bulk accept multiple documents, first line index metadata, second line document
 //
 // @Id Bulk
 // @Summary Bulk documents
+// @security BasicAuth
 // @Tags    Document
 // @Accept  plain
 // @Produce json
@@ -63,6 +64,7 @@ func Bulk(c *gin.Context) {
 //
 // @Id ESBulk
 // @Summary ES bulk documents
+// @security BasicAuth
 // @Tags    Document
 // @Accept  plain
 // @Produce json
@@ -130,9 +132,16 @@ func BulkWorker(target string, body io.Reader) (*BulkResponse, error) {
 			} else {
 				update = true
 			}
-
-			indexName := lastLineMetaData["_index"].(string)
-			operation := lastLineMetaData["operation"].(string)
+			suppliedIndexName := lastLineMetaData["_index"]
+			if suppliedIndexName == nil && len(target) > 0 {
+				suppliedIndexName = target
+			}
+			suppliedOperation := lastLineMetaData["operation"]
+			if suppliedOperation == nil && len(target) > 0 {
+				suppliedOperation = "create"
+			}
+			indexName := suppliedIndexName.(string)
+			operation := suppliedOperation.(string)
 			switch operation {
 			case "index":
 				bulkRes.Items = append(bulkRes.Items, map[string]BulkResponseItem{
@@ -204,6 +213,9 @@ func BulkWorker(target string, body io.Reader) (*BulkResponse, error) {
 					bulkRes.Items = append(bulkRes.Items, map[string]BulkResponseItem{
 						"delete": NewBulkResponseItem(bulkRes.Count, indexName, docID, "deleted", err),
 					})
+				} else {
+					lastLineMetaData["_index"] = target
+					lastLineMetaData["operation"] = "index"
 				}
 			}
 		}

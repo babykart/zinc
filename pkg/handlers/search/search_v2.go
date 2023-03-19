@@ -24,18 +24,19 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog/log"
 
-	"github.com/zinclabs/zinc/pkg/config"
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/errors"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/zutils"
-	"github.com/zinclabs/zinc/pkg/zutils/json"
+	"github.com/zinclabs/zincsearch/pkg/config"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/errors"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/zutils/json"
 )
 
 // SearchDSL searches the index for the given http request from end user
 //
 // @Id Search
 // @Summary Search V2 DSL for compatible ES
+// @security BasicAuth
 // @Tags    Search
 // @Accept  json
 // @Produce json
@@ -82,6 +83,7 @@ func SearchDSL(c *gin.Context) {
 //
 // @Id MSearch
 // @Summary Search V2 MultipleSearch for compatible ES
+// @security BasicAuth
 // @Tags    Search
 // @Accept  plain
 // @Produce json

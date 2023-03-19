@@ -20,14 +20,15 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/ider"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/ider"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 // @Id IndexDocument
 // @Summary Create or update document
+// @security BasicAuth
 // @Tags    Document
 // @Accept  json
 // @Produce json
@@ -85,6 +86,7 @@ func CreateUpdate(c *gin.Context) {
 
 // @Id IndexDocumentWithID
 // @Summary Create or update document with id
+// @security BasicAuth
 // @Tags    Document
 // @Accept  json
 // @Produce json

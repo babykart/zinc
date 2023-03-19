@@ -21,16 +21,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/config"
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
-	zincanalysis "github.com/zinclabs/zinc/pkg/uquery/analysis"
-	"github.com/zinclabs/zinc/pkg/uquery/mappings"
-	"github.com/zinclabs/zinc/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/config"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	zincanalysis "github.com/zinclabs/zincsearch/pkg/uquery/analysis"
+	"github.com/zinclabs/zincsearch/pkg/uquery/mappings"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 // @Id CreateIndex
 // @Summary Create index
+// @security BasicAuth
 // @Tags    Index
 // @Accept  json
 // @Produce json
@@ -61,6 +62,7 @@ func Create(c *gin.Context) {
 
 // @Id ESCreateIndex
 // @Summary Create index for compatible ES
+// @security BasicAuth
 // @Tags    Index
 // @Produce json
 // @Param   index path  string  true  "Index"

@@ -23,12 +23,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
 )
 
 // @Id ListIndexes
 // @Summary List indexes
+// @security BasicAuth
 // @Tags    Index
 // @Param   page_num  query  integer false  "page num"
 // @Param   page_size query  integer false  "page size"
@@ -125,6 +126,7 @@ func List(c *gin.Context) {
 
 // @Id IndexNameList
 // @Summary List index Name
+// @security BasicAuth
 // @Tags    Index
 // @Param   name  query  string  false  "IndexName"
 // @Produce json

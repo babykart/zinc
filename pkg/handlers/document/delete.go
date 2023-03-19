@@ -20,12 +20,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
 )
 
 // @Id DeleteDocument
 // @Summary Delete document
+// @security BasicAuth
 // @Tags    Document
 // @Produce json
 // @Param   index  path  string  true  "Index"

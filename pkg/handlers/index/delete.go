@@ -22,8 +22,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
 )
 
 // Delete deletes a zinc index and its associated data.
@@ -31,6 +31,7 @@ import (
 //
 // @Id DeleteIndex
 // @Summary Delete index
+// @security BasicAuth
 // @Tags    Index
 // @Produce json
 // @Param   index  path  string  true  "Index"

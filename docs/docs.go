@@ -26,6 +26,11 @@ const docTemplate = `{
     "paths": {
         "/api/_analyze": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -66,6 +71,11 @@ const docTemplate = `{
         },
         "/api/_bulk": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "text/plain"
                 ],
@@ -106,6 +116,11 @@ const docTemplate = `{
         },
         "/api/_bulkv2": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -152,6 +167,11 @@ const docTemplate = `{
         },
         "/api/index": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -202,6 +222,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -242,6 +267,11 @@ const docTemplate = `{
         },
         "/api/index/{index}": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -275,6 +305,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -314,6 +349,11 @@ const docTemplate = `{
                 }
             },
             "head": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -349,6 +389,11 @@ const docTemplate = `{
         },
         "/api/index/{index}/refresh": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -384,6 +429,11 @@ const docTemplate = `{
         },
         "/api/index_name": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -455,6 +505,11 @@ const docTemplate = `{
         },
         "/api/permissions": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -484,6 +539,11 @@ const docTemplate = `{
         },
         "/api/role": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -511,6 +571,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -557,6 +622,11 @@ const docTemplate = `{
         },
         "/api/role/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -592,6 +662,11 @@ const docTemplate = `{
         },
         "/api/user": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -619,6 +694,11 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -663,6 +743,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -709,6 +794,11 @@ const docTemplate = `{
         },
         "/api/user/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -744,6 +834,11 @@ const docTemplate = `{
         },
         "/api/{index}/_analyze": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -791,6 +886,11 @@ const docTemplate = `{
         },
         "/api/{index}/_doc": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -844,7 +944,66 @@ const docTemplate = `{
             }
         },
         "/api/{index}/_doc/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Document"
+                ],
+                "summary": "get document with id",
+                "operationId": "GetDocument",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Index",
+                        "name": "index",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/meta.Hit"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/meta.HTTPResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/meta.HTTPResponseError"
+                        }
+                    }
+                }
+            },
             "put": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -904,6 +1063,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -952,6 +1116,11 @@ const docTemplate = `{
         },
         "/api/{index}/_mapping": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -986,6 +1155,11 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1039,6 +1213,11 @@ const docTemplate = `{
         },
         "/api/{index}/_multi": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "text/plain"
                 ],
@@ -1092,6 +1271,11 @@ const docTemplate = `{
         },
         "/api/{index}/_search": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1139,6 +1323,11 @@ const docTemplate = `{
         },
         "/api/{index}/_settings": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1173,6 +1362,11 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1226,6 +1420,11 @@ const docTemplate = `{
         },
         "/api/{index}/_update/{id}": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1287,6 +1486,11 @@ const docTemplate = `{
         },
         "/es/_aliases": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1314,6 +1518,11 @@ const docTemplate = `{
         },
         "/es/_bulk": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "text/plain"
                 ],
@@ -1355,6 +1564,11 @@ const docTemplate = `{
         },
         "/es/_index_template": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1382,6 +1596,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1422,6 +1641,11 @@ const docTemplate = `{
         },
         "/es/_index_template/{name}": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1455,6 +1679,11 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1500,6 +1729,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1535,6 +1769,11 @@ const docTemplate = `{
         },
         "/es/_msearch": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "text/plain"
                 ],
@@ -1575,6 +1814,11 @@ const docTemplate = `{
         },
         "/es/{index}": {
             "put": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1618,6 +1862,11 @@ const docTemplate = `{
                 }
             },
             "head": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1653,6 +1902,11 @@ const docTemplate = `{
         },
         "/es/{index}/_delete_by_query": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1700,6 +1954,11 @@ const docTemplate = `{
         },
         "/es/{index}/_mapping": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -1736,6 +1995,11 @@ const docTemplate = `{
         },
         "/es/{index}/_search": {
             "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -1783,6 +2047,11 @@ const docTemplate = `{
         },
         "/es/{target}/_alias/{target_alias}": {
             "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -2174,7 +2443,11 @@ const docTemplate = `{
                 },
                 "ip_range": {
                     "description": "TODO: not implemented",
-                    "$ref": "#/definitions/meta.AggregationIPRange"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.AggregationIPRange"
+                        }
+                    ]
                 },
                 "max": {
                     "$ref": "#/definitions/meta.AggregationMetric"
@@ -2862,11 +3135,19 @@ const docTemplate = `{
             "properties": {
                 "bool": {
                     "description": ".",
-                    "$ref": "#/definitions/meta.BoolQueryForSDK"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.BoolQueryForSDK"
+                        }
+                    ]
                 },
                 "exists": {
                     "description": ".",
-                    "$ref": "#/definitions/meta.ExistsQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.ExistsQuery"
+                        }
+                    ]
                 },
                 "fuzzy": {
                     "description": "simple, PrefixQuery",
@@ -2877,7 +3158,11 @@ const docTemplate = `{
                 },
                 "ids": {
                     "description": ".",
-                    "$ref": "#/definitions/meta.IdsQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.IdsQuery"
+                        }
+                    ]
                 },
                 "match": {
                     "description": "simple, MatchQuery",
@@ -2888,7 +3173,11 @@ const docTemplate = `{
                 },
                 "match_all": {
                     "description": "just set or null",
-                    "$ref": "#/definitions/meta.MatchAllQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.MatchAllQuery"
+                        }
+                    ]
                 },
                 "match_bool_prefix": {
                     "description": "simple, MatchBoolPrefixQuery",
@@ -2899,7 +3188,11 @@ const docTemplate = `{
                 },
                 "match_none": {
                     "description": "just set or null",
-                    "$ref": "#/definitions/meta.MatchNoneQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.MatchNoneQuery"
+                        }
+                    ]
                 },
                 "match_phrase": {
                     "description": "simple, MatchPhraseQuery",
@@ -2917,7 +3210,11 @@ const docTemplate = `{
                 },
                 "multi_match": {
                     "description": ".",
-                    "$ref": "#/definitions/meta.MultiMatchQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.MultiMatchQuery"
+                        }
+                    ]
                 },
                 "prefix": {
                     "description": ".",
@@ -2928,7 +3225,11 @@ const docTemplate = `{
                 },
                 "query_string": {
                     "description": ".",
-                    "$ref": "#/definitions/meta.QueryStringQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.QueryStringQuery"
+                        }
+                    ]
                 },
                 "range": {
                     "description": "simple, FuzzyQuery",
@@ -2946,7 +3247,11 @@ const docTemplate = `{
                 },
                 "simple_query_string": {
                     "description": ".",
-                    "$ref": "#/definitions/meta.SimpleQueryStringQuery"
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/meta.SimpleQueryStringQuery"
+                        }
+                    ]
                 },
                 "term": {
                     "description": "simple, TermQuery",
@@ -3297,7 +3602,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "sort": {
-                    "description": "\"_sorce\", [\"+Year\",\"-Year\", {\"Year\": \"desc\"}, \"Date\": {\"order\": \"asc\"\", \"format\": \"yyyy-MM-dd\"}}\"}]",
+                    "description": "\"_score\", [\"+Year\",\"-Year\", {\"Year\": \"desc\"}, \"Date\": {\"order\": \"asc\"\", \"format\": \"yyyy-MM-dd\"}}\"}]",
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -3452,7 +3757,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0.0",
-	Host:             "localhost:4080",
+	Host:             "",
 	BasePath:         "/",
 	Schemes:          []string{"http", "https"},
 	Title:            "Zinc Search engine API",

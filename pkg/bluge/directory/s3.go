@@ -32,7 +32,7 @@ import (
 	"github.com/blugelabs/bluge/index"
 	segment "github.com/blugelabs/bluge_segment_api"
 	"github.com/rs/zerolog/log"
-	zincConfig "github.com/zinclabs/zinc/pkg/config"
+	zincConfig "github.com/zinclabs/zincsearch/pkg/config"
 )
 
 // GetS3Config returns a bluge config that will store index data in S3
@@ -158,6 +158,11 @@ func (s *S3Directory) Load(kind string, id uint64) (*segment.Data, io.Closer, er
 		log.Print("Load: failed to get object: s3://"+s.Bucket+"/"+key, err.Error())
 		return nil, nil, err
 	}
+	defer func() {
+		if err := output.Body.Close(); err != nil {
+			log.Print("Load: failed to close download stream: s3://"+s.Bucket+"/"+key, err.Error())
+		}
+	}()
 
 	data, err := ioutil.ReadAll(output.Body)
 	if err != nil {

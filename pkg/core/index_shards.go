@@ -20,16 +20,18 @@ import (
 	"fmt"
 	"sync"
 	"sync/atomic"
+	"time"
 
 	"github.com/blugelabs/bluge"
 	"github.com/blugelabs/bluge/analysis"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/zinclabs/zinc/pkg/config"
-	"github.com/zinclabs/zinc/pkg/errors"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/wal"
+	"github.com/zinclabs/zincsearch/pkg/config"
+	"github.com/zinclabs/zincsearch/pkg/errors"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/uquery/source"
+	"github.com/zinclabs/zincsearch/pkg/wal"
 )
 
 const (
@@ -355,4 +357,85 @@ func (s *IndexShard) FindShardByDocID(docID string) (int64, error) {
 		return shardID, errors.ErrorIDNotFound
 	}
 	return shardID, nil
+}
+
+// FindDocumentByDocID finds docID and returns the document
+func (s *IndexShard) FindDocumentByDocID(docID string) (*meta.Hit, error) {
+	query := bluge.NewBooleanQuery()
+	query.AddMust(bluge.NewTermQuery(docID).SetField("_id"))
+	request := bluge.NewTopNSearch(1, query).WithStandardAggregations()
+	ctx := context.Background()
+
+	// check id store by which shard
+	var hit *meta.Hit
+	writers, err := s.GetWriters()
+	if err != nil {
+		return nil, err
+	}
+
+	eg, ctx := errgroup.WithContext(ctx)
+	eg.SetLimit(config.Global.Shard.GorutineNum)
+	for id := int64(len(writers)) - 1; id >= 0; id-- {
+		id := id
+		w := writers[id]
+		eg.Go(func() error {
+			r, err := w.Reader()
+			if err != nil {
+				log.Error().Err(err).
+					Str("index", s.GetIndexName()).
+					Str("shard", s.GetID()).
+					Int64("second shard", id).
+					Msg("failed to get reader")
+				return nil // not check err, if returns err with cancel all gorutines.
+			}
+			defer r.Close()
+			dmi, err := r.Search(ctx, request)
+			if err != nil {
+				log.Error().Err(err).
+					Str("index", s.GetIndexName()).
+					Str("shard", s.GetID()).
+					Int64("second shard", id).
+					Msg("failed to do search")
+				return nil // not check err, if returns err with cancel all gorutines.
+			}
+			if dmi.Aggregations().Count() > 0 {
+				var id string
+				var indexName string
+				var timestamp time.Time
+				var sourceData map[string]interface{}
+				if next, err := dmi.Next(); err == nil {
+					_ = next.VisitStoredFields(func(field string, value []byte) bool {
+						switch field {
+						case "_id":
+							id = string(value)
+						case "_index":
+							indexName = string(value)
+						case "@timestamp":
+							timestamp, _ = bluge.DecodeDateTime(value)
+						case "_source":
+							sourceData = source.Response(&meta.Source{Enable: true}, value)
+						default: // do nothing
+						}
+						return true
+					})
+				}
+				hit = &meta.Hit{
+					Index:     indexName,
+					Type:      "_doc",
+					ID:        id,
+					Score:     0,
+					Timestamp: timestamp,
+					Source:    sourceData,
+				}
+				return errors.ErrCancelSignal // check err, if returns err with cancel other all gorutines.
+			}
+
+			return nil
+		})
+	}
+	_ = eg.Wait()
+	if hit == nil {
+		return nil, errors.ErrorIDNotFound
+	}
+	return hit, nil
 }

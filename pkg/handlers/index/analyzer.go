@@ -22,15 +22,16 @@ import (
 	"github.com/blugelabs/bluge/analysis"
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/errors"
-	"github.com/zinclabs/zinc/pkg/meta"
-	zincanalysis "github.com/zinclabs/zinc/pkg/uquery/analysis"
-	"github.com/zinclabs/zinc/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/errors"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	zincanalysis "github.com/zinclabs/zincsearch/pkg/uquery/analysis"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 // @Id Analyze
 // @Summary Analyze
+// @security BasicAuth
 // @Tags    Index
 // @Accept  json
 // @Produce json
@@ -140,6 +141,7 @@ func Analyze(c *gin.Context) {
 
 // @Id AnalyzeIndex
 // @Summary Analyze
+// @security BasicAuth
 // @Tags    Index
 // @Accept  json
 // @Produce json

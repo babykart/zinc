@@ -21,15 +21,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/zinclabs/zinc/pkg/config"
-	"github.com/zinclabs/zinc/pkg/core"
-	"github.com/zinclabs/zinc/pkg/meta"
-	zincanalysis "github.com/zinclabs/zinc/pkg/uquery/analysis"
-	"github.com/zinclabs/zinc/pkg/zutils"
+	"github.com/zinclabs/zincsearch/pkg/config"
+	"github.com/zinclabs/zincsearch/pkg/core"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	zincanalysis "github.com/zinclabs/zincsearch/pkg/uquery/analysis"
+	"github.com/zinclabs/zincsearch/pkg/zutils"
 )
 
 // @Id GetSettings
 // @Summary Get index settings
+// @security BasicAuth
 // @Tags    Index
 // @Produce json
 // @Param   index path  string  true  "Index"
@@ -54,6 +55,7 @@ func GetSettings(c *gin.Context) {
 
 // @Id SetSettings
 // @Summary Set index Settings
+// @security BasicAuth
 // @Tags    Index
 // @Accept  json
 // @Produce json

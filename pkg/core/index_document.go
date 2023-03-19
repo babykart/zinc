@@ -19,9 +19,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/zinclabs/zinc/pkg/errors"
-	"github.com/zinclabs/zinc/pkg/meta"
-	"github.com/zinclabs/zinc/pkg/zutils/json"
+	"github.com/zinclabs/zincsearch/pkg/errors"
+	"github.com/zinclabs/zincsearch/pkg/meta"
+	"github.com/zinclabs/zincsearch/pkg/zutils/json"
 )
 
 // CreateDocument inserts or updates a document in the zinc index
@@ -45,6 +45,17 @@ func (index *Index) CreateDocument(docID string, doc map[string]interface{}, upd
 	}
 
 	return shard.wal.Write(data)
+}
+
+// GetDocument get a document in the zinc index
+func (index *Index) GetDocument(docID string) (*meta.Hit, error) {
+	// check WAL
+	shard := index.GetShardByDocID(docID)
+	if err := shard.OpenWAL(); err != nil {
+		return nil, err
+	}
+
+	return shard.FindDocumentByDocID(docID)
 }
 
 // UpdateDocument updates a document in the zinc index

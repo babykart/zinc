@@ -59,8 +59,6 @@ type config struct {
 	Cluster                   cluster
 	Shard                     shard
 	Etcd                      etcd
-	S3                        s3
-	MinIO                     minIO
 	Plugin                    plugin
 }
 
@@ -69,12 +67,12 @@ type cluster struct {
 }
 
 type shard struct {
+	// control gorutine number for read
+	GorutineNum int `env:"ZINC_SHARD_GORUTINE_NUM,default=3"`
 	// DefaultNum is the default number of shards.
 	Num int64 `env:"ZINC_SHARD_NUM,default=3"`
 	// MaxSize is the maximum size limit for one shard, or will create a new shard.
 	MaxSize uint64 `env:"ZINC_SHARD_MAX_SIZE,default=1073741824"`
-	// control gorutine number for read
-	GorutineNum int `env:"ZINC_SHARD_GORUTINE_NUM,default=10"`
 }
 
 type etcd struct {
@@ -82,18 +80,6 @@ type etcd struct {
 	Prefix    string   `env:"ZINC_ETCD_PREFIX,default=/zinc"`
 	Username  string   `env:"ZINC_ETCD_USERNAME"`
 	Password  string   `env:"ZINC_ETCD_PASSWORD"`
-}
-
-type s3 struct {
-	Bucket string `env:"ZINC_S3_BUCKET"`
-	Url    string `env:"ZINC_S3_URL"`
-}
-
-type minIO struct {
-	Endpoint        string `env:"ZINC_MINIO_ENDPOINT"`
-	Bucket          string `env:"ZINC_MINIO_BUCKET"`
-	AccessKeyID     string `env:"ZINC_MINIO_ACCESS_KEY_ID"`
-	SecretAccessKey string `env:"ZINC_MINIO_SECRET_ACCESS_KEY"`
 }
 
 type plugin struct {

@@ -1,5 +1,5 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/zinclabs/zincsearch)](https://goreportcard.com/report/github.com/zinclabs/zincsearch)
-[![Docs](https://img.shields.io/badge/Docs-Docs-green)](https://zincsearch-docs.zinc.dev/) [![codecov](https://codecov.io/github/zinclabs/zincsearch/branch/main/graph/badge.svg)](https://codecov.io/github/zinclabs/zincsearch)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zincsearch/zincsearch)](https://goreportcard.com/report/github.com/zincsearch/zincsearch)
+[![Docs](https://img.shields.io/badge/Docs-Docs-green)](https://zincsearch-docs.zinc.dev/) [![codecov](https://codecov.io/github/zincsearch/zincsearch/branch/main/graph/badge.svg)](https://codecov.io/github/zinclabs/zincsearch)
 
 ❗Note: If your use case is of log search (app and security logs) instead of app search (implement search feature in your application or website) then you should check [zinclabs/zincobserve](https://github.com/zinclabs/zincobserve) project built in rust that is specifically built for log search use case.
 # ZincSearch
@@ -8,15 +8,15 @@ ZincSearch is a search engine that does full text indexing. It is a lightweight 
 
 It is very simple and easy to operate as opposed to Elasticsearch which requires a couple dozen knobs to understand and tune which you can get up and running in 2 minutes
 
-It is a drop-in replacement for Elasticsearch if you are just ingesting data using APIs and searching using kibana (Kibana is not supported with zinc. Zinc provides its own UI).
+It is a drop-in replacement for Elasticsearch if you are just ingesting data using APIs and searching using kibana (Kibana is not supported with ZincSearch. ZincSearch provides its own UI).
 
-Check the below video for a quick demo of Zinc.
+Check the below video for a quick demo of ZincSearch.
 
 [![Zinc Youtube](./screenshots/zinc-youtube.jpg)](https://www.youtube.com/watch?v=aZXtuVjt1ow)
 
 # Why ZincSearch
 
-  While Elasticsearch is a very good product, it is complex and requires lots of resources and is more than a decade old. I built Zinc so it becomes easier for folks to use full text search indexing without doing a lot of work.
+  While Elasticsearch is a very good product, it is complex and requires lots of resources and is more than a decade old. I built ZincSearch so it becomes easier for folks to use full text search indexing without doing a lot of work.
 
 # Features:
 
@@ -60,7 +60,7 @@ ZincSearch has hundreds of production installations is in GA.
 
 # ZincSearch Vs ZincObserve
 
-| Feature             | Zinc      |   ZincObserve                |
+| Feature             | ZincSearch     |   ZincObserve                |
 ----------------------|-----------|-----------------------------------|
 | Ideal use case      | App search| Logs, metrics, traces (Immutable Data)  | 
 | Storage             | Disk      |  Disk, Object (S3), GCS, MinIO, swift and more.   |
@@ -75,7 +75,7 @@ ZincSearch has hundreds of production installations is in GA.
 
 # Community
 
-- How to develop and contribute to Zinc
+- How to develop and contribute to ZincSearch
 
   Check the [contributing guide](./CONTRIBUTING.md) . Also check the [roadmap items](https://github.com/orgs/zinclabs/projects/3)
 

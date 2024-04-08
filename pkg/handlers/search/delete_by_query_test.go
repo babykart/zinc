@@ -32,7 +32,6 @@ type success struct {
 }
 
 type failure struct {
-	outcome    bool
 	statusCode int
 	body       body
 }
@@ -134,7 +133,6 @@ func TestDeleteByQuery(t *testing.T) {
 
 			assert.NoError(t, core.DeleteIndex(index.GetName()))
 		})
-
 	}
 }
 
@@ -150,7 +148,7 @@ func assertHTTPResponse(t *testing.T, w *httptest.ResponseRecorder, statusCode i
 func assertZeruResultQuery(t *testing.T, index *core.Index, query interface{}) {
 	jsonQuery, err := json.Marshal(&query)
 	assert.NoError(t, err)
-	var search, serr = index.Search(&meta.ZincQuery{
+	search, serr := index.Search(&meta.ZincQuery{
 		Query: &meta.Query{
 			Match: map[string]*meta.MatchQuery{
 				"_all": {
